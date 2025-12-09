@@ -3,26 +3,25 @@ pipeline {
 
     stages {
         stage('Install Dependencies') {
-            steps {
-                echo 'Installing Node.js dependencies...'
-                sh 'npm install'
-            }
+            steps { sh 'npm install' }
         }
-
         stage('Run Tests') {
+            steps { sh 'npm test' }
+        }
+        stage('Deploy') {
             steps {
-                echo 'Running tests...'
-                sh 'npm test'
+                echo 'Deploying Docker containers...'
+                sh '''
+                docker-compose down
+                docker-compose up -d --build
+                '''
             }
         }
     }
 
     post {
-        success {
-            echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
+        success { echo 'Pipeline succeeded!' }
+        failure { echo 'Pipeline failed!' }
     }
 }
+
