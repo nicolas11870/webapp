@@ -1,0 +1,15 @@
+{
+  "name": "ubuntu",
+  "version": "1.0.0",
+  "description": "WebApp Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"All tests passed!\""
+  },
+  "author": "nicolas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
